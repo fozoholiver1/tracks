@@ -4,42 +4,81 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>Tracks</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+        <link rel="stylesheet" href="css/app.css">
         <link rel="stylesheet" href="/css/welcome.css">
-        <script src="{{ asset('anime/anime.min.js') }}"></script>
+        <script src="{{ asset('animejs/anime.min.js') }}"></script>
+        <script src="js/app.js"></script>
     </head>
     <body>
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                        <a href="{{ url('/home') }}">Home</a>
+                    <a href="{{ url('/home') }}" >Home</a>
                     @else
-                        <a href="{{ route('login') }}">Login</a>
+                        <a href="{{ route('login') }}" class=" primary">
+                            <button class="btn btn-danger">Sign In</button>
+                        </a>
 
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
+                          {{--  @if (Route::has('register'))
+                          <a href="{{ route('register') }}">Register</a>
+                        @endif  --}}
                     @endauth
                 </div>
-            @endif
+                @endif
 
-            <div class="content">
-                <div class="title m-b-md">
-                    tracks
-                </div>
+    <div id="bg"></div>
 
-                <div class="links">
+    <header>
 
-                    <a href="/home">home</a>
-                    <a href="/a/all">artist</a>
-                </div>
-            </div>
-        </div>
+    </header>
 
+    <main>
 
+        <section id="card">
+
+            <ul>
+                <li>
+                    <span></span>
+                    <strong> Find your fevorite artist by name</strong>
+                </li>
+                <li>
+                    <span></span>
+                    <strong>Play the latest song online </strong>
+                </li>
+                <li>
+                    <span></span>
+                    <strong> Download fevorite songs </strong>
+                </li>
+            </ul>
+        </section>
+        <section id="primary">
+
+            <h1>Welcome to tracks </h1>
+            <p> Enrich you life with content from this site.</p>
+
+            <a href="/a/all">Go to our hompage</a>
+        </section>
+    </main>
+    <script>
+        anime({
+            targets: 'h1',
+            keyframes: [
+              {translateY: -40},
+             { rotateX: 360},
+              {translateX: 250},
+              {translateY: 40},
+              {translateX: 0},
+              {translateY: 0}
+              ],
+              duration: 4000,
+              easing: 'easeOutElastic(1, .8)',
+              loop: false
+            });
+        </script>
     </body>
-</html>
+        </html>

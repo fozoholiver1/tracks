@@ -1,11 +1,11 @@
 @extends('layouts.app')
-
+@section('title','New_Artist ')
 @section('content')
 
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
+            <div class="card bg-dark white capitalise">
                 <div class="card-header">Upload New artist </div>
 
                 <div class="card-body">

@@ -31,7 +31,7 @@ class SongsController extends Controller
                 'song'=>'',
             ]);
 
-                $songpath=request('song')->store('songs','public'); //this will create an uploads link an directory in our
+                $songpath=request('song')->store('songs','google'); //this will create an uploads link an directory in our
                 //public directory
 
                 $me=[ //saving  the uploads link and caption to db
@@ -53,12 +53,19 @@ class SongsController extends Controller
             public function show(Artist $artist){
 
 
-                $songs=Song::where( 'artist_name', '=', $artist->artist_name)->paginate(6);
+                $songs=Song::where( 'artist_name', '=', $artist->artist_name)->orderBy('created_at','DESC')->paginate(12);
 
                 $user=auth()->user();
 
                 return view('song.show',compact('user','artist','songs'));
             }
+            public function destroy( Song $song){
+
+                $song->delete();
+
+                return redirect('/a/all');
+
+             }
 
 
 }

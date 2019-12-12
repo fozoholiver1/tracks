@@ -1,5 +1,23 @@
 body {
   margin: 0;
-  background-color: #89b6ca;
+  background-image: url("/css/Untitled-1.png");
+  background-size: cover;
+  background-position: center;
+  background-position-x: 50%;
+  background-position-y: 50%;
+}
+
+.capitalise {
+  text-transform: capitalize;
+}
+
+.white {
+  color: white;
+  font-weight: bold;
+}
+
+.images {
+  width: 300px;
+  height: 200px;
 }
 /*# sourceMappingURL=main.css.map */

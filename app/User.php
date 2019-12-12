@@ -44,6 +44,9 @@ class User extends Authenticatable
         return $this->hasMany(Song::class) ;
         // ->orderBy('created_at','DESC') ;
     }
+    public function admin(){
+        return $this->hasOne(Admin::class);
+    }
 
 
     //  protected static function boot()//we want to create a default profile for our users

@@ -2,18 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Admin;
 use App\Artist;
 use App\User;
-
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 class ArtistController extends Controller
 {
 
-    public function index(User $user){
-        $user=auth()->user();
-       $artists=Artist::where('user_id', '>', 0)->orderBy('artist_name')->paginate(6);
+    public function index(User $user,Admin $admin){
 
-            return view('artist.index',compact('user','artists'));
+        $user=auth()->user();
+        // dd($user->id===$user->admin->user_id); //testing boolian value for my polycy
+       $artists=Artist::where('user_id', '>', 0)->orderBy('artist_name')->paginate(12);
+
+            return view('artist.index',compact('user','artists','admin'));
     }
     public function create(User $user){
 
@@ -41,7 +44,7 @@ class ArtistController extends Controller
             //   $image=Image::make(public_path("storage/{$imagepath}"))->fit(1200,1200);//image intervension library
             //   $image->save();
 
-               $imagepath=request('image')->store('artist_images','public'); //this will create an uploads link an directory in our
+               $imagepath=request('image')->store('artist_images','google'); //this will create an uploads link an directory in our
               //public directory
               //dd($imagepath);
               //dd( request()->all());
@@ -58,7 +61,7 @@ class ArtistController extends Controller
 
     public function update(Artist $artist ,User $user)
     {
-        // $this->authorize('update',User::class);
+       $this->authorize('create',User::class);
         $data= request()->validate([//validation
             'artist_name' => ['required', 'string', 'max:255'],
                   'image'=>'',
@@ -83,4 +86,16 @@ class ArtistController extends Controller
        // return redirect('/profiles/{$user->id}',compact('user'));
         return redirect( '/a/all');
     }
+
+    public function destroy( Artist $artist){
+
+if (Gate::allows('admin-only',  Auth::user())) {
+
+    $artist->delete();
+
+            return redirect('/a/all');
+}
+
+
+     }
 }

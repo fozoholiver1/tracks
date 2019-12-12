@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title> @yield('title', 'Tracks')</title>
 
     <!-- Scripts -->
 
@@ -23,12 +23,14 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light bg-white  shadow-sm ">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     Tracks
                 </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
@@ -44,42 +46,64 @@
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <a class="nav-link white" href="{{ route('login') }}">
+                                    <button class=" btn btn-danger"> Login</button>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link white" href="/contact">
+                                    <button class=" btn  btn-success"> contact</button>
+                                    </a>
                             </li>
                             @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
+                                {{--  <li class="nav-item">
+                                    <a class="nav-link white" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                </li>  --}}
                                 @endif
                         @else
                         <ul class=" nav text">
                             <li class=" nav-item">
                                 <a href=" /home" class=" nav-link">
-                                 <button  class="btn btn-primary">Home</button>
+                                 <button  class="btn   bg-dark white  btn-outline-info capitalise">Home</button>
                                 </a>
                             </li>
-                        <ul class=" nav text">
                             <li class=" nav-item">
                                 <a href=" /a/all" class=" nav-link">
-                                 <button  class="btn btn-primary">Altist home</button>
+                                 <button  class="btn  bg-dark white  btn-outline-info capitalise">Altist home</button>
                                 </a>
                             </li>
                             <li class=" nav-item">
                                 <a href="/a/create" class=" nav-link">
-                                 <button class="btn btn-primary"> Create Artist</button>
+                                 <button class="btn bg-dark white  btn-outline-info capitalise"> Create Artist</button>
                                 </a>
                             </li>
-                           |||
+
                            <li class=" nav-item">
                                <a href="/songs/create" class=" nav-link">
-                                 <button class="btn btn-primary"> Create Song</button>
+                                 <button class="btn bg-dark white  btn-outline-info capitalise"> Create Song</button>
+                                </a>
+                            </li>
+
+
+                            @can('admin-only', Auth::user())
+
+                            <li class=" nav-item">
+                                <a href="/A" class=" nav-link">
+                                    <button class="btn  bg-dark white  btn-outline-info capitalise"> Admin</button>
+                                </a>
+                            </li>
+                            @endcan
+
+                           <li class=" nav-item">
+                               <a href="/contact" class=" nav-link">
+                                 <button class="btn bg-dark white   btn-outline-info capitalise "> contact</button>
                                 </a>
                             </li>
                         </ul>
 
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                    {{ Auth::user()->username }} <span class="caret"></span>
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
@@ -102,7 +126,9 @@
 
         <main class="py-4">
             @yield('content')
+            @include('footer')
         </main>
+        div
     </div>
 </body>
 </html>

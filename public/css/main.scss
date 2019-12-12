@@ -1,4 +1,66 @@
 body {
     margin: 0;
-    background-color: rgb(137, 182, 202);
+    background-image: url('/css/Untitled-1.png');
+    background-size: cover;
+    background-position: center;
+    background-position-x: 50%;
+    background-position-y: 50%;
+}
+
+.capitalise {
+    text-transform: capitalize;
+}
+
+.white {
+    color: white;
+    font-weight: bold;
+}
+// gjgj
+// body {
+//     animation: colorchange 50s;
+//     animation-direction: alternate-reverse;
+//     /* animation-name followed by duration in seconds*/
+//     /* you could also use milliseconds (ms) or something like 2.5s */
+//     -webkit-animation: colorchange 50s;
+//     /* Chrome and Safari */
+// }
+// @keyframes colorchange {
+//     0% {
+//         background: rgb(34, 75, 41);
+//     }
+//     25% {
+//         background: rgb(48, 138, 141);
+//     }
+//     50% {
+//         background: rgb(31, 31, 65);
+//     }
+//     75% {
+//         background: green;
+//     }
+//     100% {
+//         background: rgb(114, 3, 58);
+//     }
+// }
+// @-webkit-keyframes colorchange
+// /* Safari and Chrome - necessary duplicate */
+// {
+//     0% {
+//         background: rgb(34, 75, 41);
+//     }
+//     25% {
+//         background: rgb(48, 138, 141);
+//     }
+//     50% {
+//         background: rgb(31, 31, 65);
+//     }
+//     75% {
+//         background: green;
+//     }
+//     100% {
+//         background: rgb(114, 3, 58);
+//     }
+// }
+.images {
+    width: 300px;
+    height: 200px;
 }
